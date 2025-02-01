@@ -10,6 +10,7 @@ import {
   Alert
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { createUser } from '../services/database';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -63,24 +64,24 @@ function Register() {
     }
 
     try {
-      // Mock successful registration
-      // In a real application, this would be an API call
-      const mockToken = btoa(JSON.stringify({
-        id: Date.now(),
-        name: formData.name,
-        email: formData.email,
-        exp: Date.now() + 24 * 60 * 60 * 1000 // 24 hours from now
-      }));
+      const result = await createUser(
+        formData.name.trim(),
+        formData.email.toLowerCase(),
+        formData.password
+      );
 
-      // Store user data in localStorage
-      localStorage.setItem('token', mockToken);
-      localStorage.setItem('user', JSON.stringify({
-        name: formData.name,
-        email: formData.email
-      }));
-      
-      // Redirect to chat
-      navigate('/chat');
+      if (result.success) {
+        // Create a session token
+        const token = btoa(JSON.stringify({
+          email: formData.email,
+          exp: Date.now() + 24 * 60 * 60 * 1000 // 24 hours
+        }));
+        
+        localStorage.setItem('token', token);
+        navigate('/chat');
+      } else {
+        setError(result.error || 'Registration failed. Please try again.');
+      }
     } catch (err) {
       console.error('Registration error:', err);
       setError('Registration failed. Please try again.');
