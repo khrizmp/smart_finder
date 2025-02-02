@@ -73,10 +73,6 @@
   gap: 8px;
 }
 
-.message.bot {
-  background-color: #f0f0f0;
-  align-self: flex-start;
-}
 
 .message.user {
   background-color: #007bff;
