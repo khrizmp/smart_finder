@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Paper, TextField, Button, Typography, Box, Alert, Link } from '@mui/material';
+import { Container, Paper, TextField, Button, Typography, Box, Alert, Link, AppBar, Toolbar } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { verifyUser } from '../services/database';
 
@@ -63,77 +63,63 @@ function Login() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Paper elevation={3} sx={{ padding: 4, width: '100%' }}>
-          <Typography component="h1" variant="h5" align="center" gutterBottom>
-            Sign In
-          </Typography>
-          
-          {error && (
-            <Alert severity="error" sx={{ mb: 2 }}>
-              {error}
-            </Alert>
-          )}
+    <Box sx={{ minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
+      {/* 🌐 Top Navigation Bar */}
+      <AppBar position="static" color="transparent" elevation={0} sx={{ display: 'flex', alignItems: 'flex-end' }}>
+        <Toolbar sx={{ justifyContent: 'flex-end', gap: 2 }}>
+          <Button variant="outlined" onClick={() => navigate('/home')}>
+            Home
+          </Button>
+          <Button variant="outlined" onClick={() => navigate('/about')}>
+            About
+          </Button>
+        </Toolbar>
+      </AppBar>
 
-          <form onSubmit={handleSubmit}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              value={formData.email}
-              onChange={handleChange}
-              error={error && error.includes('email')}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={formData.password}
-              onChange={handleChange}
-              error={error && error.includes('Password')}
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
+      {/* 🗂️ Login Form */}
+      <Container maxWidth="xs">
+        <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <Paper elevation={3} sx={{ p: 4, width: '100%' }}>
+            <Typography variant="h5" align="center" gutterBottom>
               Sign In
-            </Button>
-            <Box sx={{ textAlign: 'center' }}>
-              <Link 
-                href="#" 
-                variant="body2"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/register');
-                }}
-              >
-                {"Don't have an account? Sign Up"}
+            </Typography>
+
+            {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
+
+            <form onSubmit={handleSubmit}>
+              <TextField
+                fullWidth
+                label="Email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                margin="normal"
+                required
+              />
+              <TextField
+                fullWidth
+                label="Password"
+                name="password"
+                type="password"
+                value={formData.password}
+                onChange={handleChange}
+                margin="normal"
+                required
+              />
+              <Button type="submit" fullWidth variant="contained" sx={{ mt: 2 }}>
+                Sign In
+              </Button>
+            </form>
+
+            <Box sx={{ textAlign: 'center', mt: 2 }}>
+              <Link href="#" onClick={() => navigate('/register')}>
+                Don't have an account? Sign Up
               </Link>
             </Box>
-          </form>
-        </Paper>
-      </Box>
-    </Container>
+          </Paper>
+        </Box>
+      </Container>
+    </Box>
   );
 }
 
