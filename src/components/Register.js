@@ -89,17 +89,40 @@ function Register() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Paper elevation={3} sx={{ padding: 4, width: '100%' }}>
-          <Typography component="h1" variant="h5" align="center" gutterBottom>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        background: 'linear-gradient(135deg, #1a1a1a, #2d2d2d)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 3
+      }}
+    >
+      <Container component="main" maxWidth="xs">
+        <Paper 
+          elevation={3} 
+          sx={{ 
+            padding: 4, 
+            width: '100%',
+            backgroundColor: 'rgba(26, 26, 26, 0.8)',
+            backdropFilter: 'blur(10px)',
+            border: '2px solid rgba(66, 184, 131, 0.3)',
+            borderRadius: 3,
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+          }}
+        >
+          <Typography 
+            component="h1" 
+            variant="h5" 
+            align="center" 
+            gutterBottom
+            sx={{ 
+              color: '#42b883',
+              textShadow: '0 0 15px rgba(66, 184, 131, 0.5)',
+              fontWeight: 600
+            }}
+          >
             Create Account
           </Typography>
           
@@ -122,6 +145,25 @@ function Register() {
               value={formData.name}
               onChange={handleChange}
               error={error && error.includes('Name')}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'rgba(66, 184, 131, 0.3)',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'rgba(66, 184, 131, 0.5)',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#42b883',
+                  },
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'rgba(255, 255, 255, 0.7)',
+                },
+                '& .MuiOutlinedInput-input': {
+                  color: '#fff',
+                },
+              }}
             />
             <TextField
               margin="normal"
@@ -134,6 +176,25 @@ function Register() {
               value={formData.email}
               onChange={handleChange}
               error={error && error.includes('email')}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'rgba(66, 184, 131, 0.3)',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'rgba(66, 184, 131, 0.5)',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#42b883',
+                  },
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'rgba(255, 255, 255, 0.7)',
+                },
+                '& .MuiOutlinedInput-input': {
+                  color: '#fff',
+                },
+              }}
             />
             <TextField
               margin="normal"
@@ -147,6 +208,28 @@ function Register() {
               onChange={handleChange}
               error={error && error.includes('Password')}
               helperText="Password must be at least 6 characters long"
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'rgba(66, 184, 131, 0.3)',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'rgba(66, 184, 131, 0.5)',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#42b883',
+                  },
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'rgba(255, 255, 255, 0.7)',
+                },
+                '& .MuiOutlinedInput-input': {
+                  color: '#fff',
+                },
+                '& .MuiFormHelperText-root': {
+                  color: 'rgba(255, 255, 255, 0.5)',
+                },
+              }}
             />
             <TextField
               margin="normal"
@@ -159,12 +242,41 @@ function Register() {
               value={formData.confirmPassword}
               onChange={handleChange}
               error={error && error.includes('Passwords do not match')}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'rgba(66, 184, 131, 0.3)',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'rgba(66, 184, 131, 0.5)',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#42b883',
+                  },
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'rgba(255, 255, 255, 0.7)',
+                },
+                '& .MuiOutlinedInput-input': {
+                  color: '#fff',
+                },
+              }}
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ 
+                mt: 3, 
+                mb: 2,
+                bgcolor: '#42b883',
+                '&:hover': {
+                  bgcolor: '#3aa876',
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 4px 15px rgba(66, 184, 131, 0.3)',
+                },
+                transition: 'all 0.3s ease'
+              }}
             >
               Sign Up
             </Button>
@@ -176,14 +288,22 @@ function Register() {
                   e.preventDefault();
                   navigate('/login');
                 }}
+                sx={{
+                  color: '#42b883',
+                  textDecoration: 'none',
+                  '&:hover': {
+                    color: '#3aa876',
+                    textDecoration: 'underline'
+                  }
+                }}
               >
                 {"Already have an account? Sign In"}
               </Link>
             </Box>
           </form>
         </Paper>
-      </Box>
-    </Container>
+      </Container>
+    </Box>
   );
 }
 

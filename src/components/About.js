@@ -78,10 +78,12 @@ function About() {
               Key Features
             </Typography>
             <Typography variant="body1" component="ul" sx={{ pl: 2 }}>
-              <li>Advanced AI conversation capabilities</li>
-              <li>Secure user authentication</li>
-              <li>Intuitive user interface</li>
-              <li>Responsive design for all devices</li>
+              <li>Enable retrieval-augmented generation (RAG) tasks by orchestrating multiple specialized 
+                AI agents for diverse data-handling and question-answering processes.</li>
+              <li>Dynamically query Google (or similar search endpoints) to fetch targeted information,
+                 ensuring more accurate and contextually relevant search results.</li>
+              <li>Efficiently insert and retrieve vectorized data by integrating Pinecone Vector Store to build and maintain a robust knowledge base, 
+                enabling fast and context-rich information access .</li>
             </Typography>
           </AnimatedPaper>
         </Box>
