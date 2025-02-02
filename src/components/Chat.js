@@ -140,7 +140,7 @@ function Chat() {
           {messages.map((msg, index) => (
             <Message key={index} {...msg} />
           ))}
-          {isLoading && <div className="message bot">⏳ Searching...</div>}
+          {isLoading && <div className="message bot">⏳ Scouring the web...</div>}
         </div>
 
         <form onSubmit={handleSendMessage} className="input-container">
